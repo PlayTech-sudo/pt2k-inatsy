@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2020 at 07:49 AM
+-- Generation Time: Feb 13, 2020 at 11:06 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `inventory_auto`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(20) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `quantity` int(20) NOT NULL,
+  `sale_price` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -140,7 +153,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `quantity`, `buy_price`, `sale_price`, `categorie_id`, `media_id`, `date`) VALUES
 (3, 'asdf', '1', '250.00', '260.00', 1, 0, '2020-01-24 12:00:51'),
-(5, 'qwerty', '8', '500.00', '520.00', 1, 0, '2020-01-28 16:04:40'),
+(5, 'qwerty', '9', '500.00', '520.00', 1, 0, '2020-01-28 16:04:40'),
 (6, 'abc', '2', '55.00', '60.00', 1, 0, '2020-01-29 08:02:03');
 
 -- --------------------------------------------------------
@@ -151,9 +164,10 @@ INSERT INTO `products` (`id`, `name`, `quantity`, `buy_price`, `sale_price`, `ca
 
 CREATE TABLE `purchase` (
   `id` int(20) UNSIGNED NOT NULL,
-  `product_id` int(20) UNSIGNED NOT NULL,
+  `name` varchar(20) NOT NULL,
   `qty` int(20) NOT NULL,
   `price` int(20) NOT NULL,
+  `categorie_id` int(20) UNSIGNED NOT NULL,
   `date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -161,12 +175,9 @@ CREATE TABLE `purchase` (
 -- Dumping data for table `purchase`
 --
 
-INSERT INTO `purchase` (`id`, `product_id`, `qty`, `price`, `date`) VALUES
-(1, 5, 1, 520, '2020-01-30 08:34:20.000000'),
-(2, 5, 2, 1040, '2020-01-30 00:00:00.000000'),
-(3, 5, 1, 520, '2020-01-30 11:22:22.000000'),
-(4, 5, 2, 1040, '2020-01-30 12:08:02.000000'),
-(5, 5, 1, 520, '2020-01-30 12:33:41.000000');
+INSERT INTO `purchase` (`id`, `name`, `qty`, `price`, `categorie_id`, `date`) VALUES
+(9, 'abc', 1, 200, 1, '2020-02-12 08:39:59.000000'),
+(10, 'qwerty', 1, 121, 4, '2020-02-12 08:42:17.000000');
 
 -- --------------------------------------------------------
 
@@ -220,9 +231,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, ' Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2020-01-31 07:06:54'),
+(1, ' Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2020-02-13 07:58:18'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2020-01-28 14:29:32'),
-(3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2020-01-28 16:07:35');
+(3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2020-02-13 07:58:34');
 
 -- --------------------------------------------------------
 
@@ -297,8 +308,7 @@ ALTER TABLE `products`
 -- Indexes for table `purchase`
 --
 ALTER TABLE `purchase`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sales`
@@ -365,7 +375,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sales`
