@@ -1,0 +1,61 @@
+<?php
+require('fpdf/fpdf.php');
+
+//db connection
+$con = mysqli_connect('localhost','root','');
+mysqli_select_db($con,'inventory_auto');
+
+//get invoices data
+$query = mysqli_query($con,"select * from products");
+//$invoices = mysqli_fetch_array($query);
+
+//A4 width : 219mm
+//default margin : 10mm each side
+//writable horizontal : 219-(10*2)=189mm
+
+$pdf = new FPDF('P','mm','A4');
+
+
+
+$pdf->AddPage();
+
+$pdf->SetFont('Arial','B',14);
+
+//Cell(width , height , text , border , end line , [align] )
+
+$pdf->Cell(130	,5,'                                         Product Report ',0,0,'C');
+
+
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Cell(27	,10,'',0,1,'C');
+$pdf->Cell(27, 10, 'Id',1,0,'C');
+$pdf->Cell(27, 10, 'Name',1,0,'C');
+$pdf->Cell(27, 10, 'Quantity',1,0,'C');
+$pdf->Cell(27, 10, ' Buy price',1,0,'C');
+$pdf->Cell(27, 10, 'Sale Price',1,0,'C');
+$pdf->Cell(27, 10, 'Category',1,0,'C');
+$pdf->Cell(27, 10, 'Date',1,0,'C');
+//set font to arial, bold, 14pt
+$pdf->SetFont('Arial','B',14);
+
+while($invoice= mysqli_fetch_array($query))
+{
+
+//billing address
+//$pdf->Cell(100	,5,'Bill to',0,1);//end of line
+
+//add dummy cell at beginning of each line for indentation
+$pdf->Cell(27	,10,'',0,1,'C');
+$pdf->Cell(27, 10,$invoice['id'],1,0,'C');
+$pdf->Cell(27, 10, $invoice['name'],1,0,'C');
+$pdf->Cell(27, 10, $invoice['quantity'],1,0,'C');
+$pdf->Cell(27, 10, $invoice['buy_price'],1,0,'C');
+$pdf->Cell(27, 10, $invoice['sale_price'],1,0,'C');
+$pdf->Cell(27, 10, $invoice['categorie_id'],1,0,'C');
+//$pdf->Cell(50, 10, $invoice['total'],1,0,'C');
+$pdf->Cell(27, 10, $invoice['date'],1,0,'C');
+
+}
+//$pdf->header_Table()
+$pdf->Output();
+?>
