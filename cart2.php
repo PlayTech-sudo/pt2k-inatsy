@@ -24,7 +24,7 @@
           $idd= $_GET['id'];
           $con = mysqli_connect('localhost','root','');
           mysqli_select_db($con,'inventory_auto');
-         $sql = "INSERT INTO cart ( id,name,quantity,sale_price) SELECT id,name,quantity,sale_price FROM products where id='$idd'";
+         $sql = "INSERT INTO cart ( id,name,sale_price) SELECT id,name,sale_price FROM products where id='$idd'";
          if (mysqli_query($con, $sql))
          {
 		                       echo "<script type='text/javascript'>showNotification('top','right','Record Added Successfully.','info');</script>";

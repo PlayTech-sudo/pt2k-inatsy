@@ -5,7 +5,7 @@
    page_require_level(1);
 ?>
 <?php
-$purchase = find_all_purchase();
+$purchase = find_all(purchase);
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">

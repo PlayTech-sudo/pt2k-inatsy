@@ -326,8 +326,7 @@ function tableExists($table){
    global $db;
    $sql  = "SELECT s.id,s.qty,s.price,s.date,p.name";
    $sql .= " FROM purchase s";
-   $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-   $sql .= " ORDER BY s.date DESC";
+      $sql .= " ORDER BY s.date DESC";
    return find_by_sql($sql);
  }
  /*--------------------------------------------------------------*/
