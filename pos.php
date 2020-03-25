@@ -72,11 +72,18 @@
         
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading clearfix">
+        <div class="panel-heading">
+        <strong>
+          <span class="glyphicon glyphicon-th"></span>
+          <span>POINT OF SALE</span>
+       </strong>
+
          <div class="pull-right">
            <a href="add_product.php" class="btn btn-primary">Add New</a>
          </div>
-        </div>
+        
+      </div>
+       
         <div class="panel-body">
           <form name="form4" action="" method="POST">
           <table class="table table-bordered">

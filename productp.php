@@ -27,14 +27,14 @@ $pdf->Cell(130	,5,'                                         Product Report ',0,0
 
 
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(27	,10,'',0,1,'C');
-$pdf->Cell(27, 10, 'Id',1,0,'C');
+$pdf->Cell(10	,10,'',0,1,'C');
+$pdf->Cell(10, 10, 'Id',1,0,'C');
 $pdf->Cell(27, 10, 'Name',1,0,'C');
 $pdf->Cell(27, 10, 'Quantity',1,0,'C');
 $pdf->Cell(27, 10, ' Buy price',1,0,'C');
 $pdf->Cell(27, 10, 'Sale Price',1,0,'C');
-$pdf->Cell(27, 10, 'Category',1,0,'C');
-$pdf->Cell(27, 10, 'Date',1,0,'C');
+$pdf->Cell(10, 10, 'Cat.',1,0,'C');
+$pdf->Cell(50, 10, 'Date',1,0,'C');
 //set font to arial, bold, 14pt
 $pdf->SetFont('Arial','B',14);
 
@@ -45,15 +45,15 @@ while($invoice= mysqli_fetch_array($query))
 //$pdf->Cell(100	,5,'Bill to',0,1);//end of line
 
 //add dummy cell at beginning of each line for indentation
-$pdf->Cell(27	,10,'',0,1,'C');
-$pdf->Cell(27, 10,$invoice['id'],1,0,'C');
+$pdf->Cell(10	,10,'',0,1,'C');
+$pdf->Cell(10, 10,$invoice['id'],1,0,'C');
 $pdf->Cell(27, 10, $invoice['name'],1,0,'C');
 $pdf->Cell(27, 10, $invoice['quantity'],1,0,'C');
 $pdf->Cell(27, 10, $invoice['buy_price'],1,0,'C');
 $pdf->Cell(27, 10, $invoice['sale_price'],1,0,'C');
-$pdf->Cell(27, 10, $invoice['categorie_id'],1,0,'C');
+$pdf->Cell(10, 10, $invoice['categorie_id'],1,0,'C');
 //$pdf->Cell(50, 10, $invoice['total'],1,0,'C');
-$pdf->Cell(27, 10, $invoice['date'],1,0,'C');
+$pdf->Cell(50, 10, $invoice['date'],1,0,'C');
 
 }
 //$pdf->header_Table()

@@ -28,12 +28,12 @@ $pdf->Cell(130	,5,'                                         Expense Report ',0,0
 
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(32	,10,'',0,1,'C');
-$pdf->Cell(32, 10, 'Id',1,0,'C');
+$pdf->Cell(10, 10, 'Id',1,0,'C');
 $pdf->Cell(32, 10, 'Name',1,0,'C');
-$pdf->Cell(32, 10, 'Category',1,0,'C');
+$pdf->Cell(10, 10, 'Cat.',1,0,'C');
 $pdf->Cell(32, 10, 'price',1,0,'C');
 $pdf->Cell(32, 10, 'Description',1,0,'C');
-$pdf->Cell(32, 10, 'date',1,0,'C');
+$pdf->Cell(50, 10, 'date',1,0,'C');
 //set font to arial, bold, 14pt
 $pdf->SetFont('Arial','B',14);
 
@@ -45,13 +45,13 @@ while($invoice= mysqli_fetch_array($query))
 
 //add dummy cell at beginning of each line for indentation
 $pdf->Cell(32	,10,'',0,1,'C');
-$pdf->Cell(32, 10,$invoice['id'],1,0,'C');
+$pdf->Cell(10, 10,$invoice['id'],1,0,'C');
 $pdf->Cell(32, 10, $invoice['ename'],1,0,'C');
-$pdf->Cell(32, 10, $invoice['e_category'],1,0,'C');
+$pdf->Cell(10, 10, $invoice['e_category'],1,0,'C');
 $pdf->Cell(32, 10, $invoice['eprice'],1,0,'C');
 $pdf->Cell(32, 10, $invoice['e_desc'],1,0,'C');
 //$pdf->Cell(50, 10, $invoice['total'],1,0,'C');
-$pdf->Cell(32, 10, $invoice['date'],1,0,'C');
+$pdf->Cell(50, 10, $invoice['date'],1,0,'C');
 
 }
 //$pdf->header_Table()
